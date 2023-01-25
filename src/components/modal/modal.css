@@ -1,0 +1,38 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Анимация темной стороны (заний фон) transform: scale(0);*/
+    opacity: 0;
+    /* Если открыто окно не сможет выделить текст, нажать на кнопку и т.д.*/
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.modal.active {
+    opacity: 1;
+    /*Кликабельное окно*/
+    pointer-events: all;
+   /* transform: scale(1);*/
+}
+
+.modal__content {
+    padding: 12px;
+    border-radius: 12px;
+    background-color: white;
+  /*  height: 200px;
+    width: 400px;*/
+    width: auto; /* 50vw Половина экрана*/
+    transform: scale(0.5);
+    transition: 0.4s all;
+}
+
+.modal__content.active { 
+    transform: scale(1);
+}
