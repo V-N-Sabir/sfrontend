@@ -1,17 +1,17 @@
 import axios from "axios"
 import dotenv from 'dotenv'
-import { SERVER_HOST } from "../utils/consts"
+import { REACT_APP_SERV_HOST} from "../utils/consts"
 dotenv.config()
 
 console.log("process.env", process.env)
 
 const $host = axios.create({
   
-    baseURL: process.env.SERVER_HOST || SERVER_HOST
+    baseURL: process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
 })
 
 const $authHost = axios.create({
-    baseURL: process.env.SERVER_HOST || SERVER_HOST
+    baseURL: process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
 })
 // @ts-ignore
 const authInterceptor = config => {

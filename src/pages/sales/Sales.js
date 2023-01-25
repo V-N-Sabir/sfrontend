@@ -14,7 +14,7 @@ import CollapseApp from "./Collapse";
 import './index.scss'
 //import * as dotenv from 'dotenv'
 import dotenv from 'dotenv'
-import { SERVER_HOST } from "../../utils/consts";
+import { REACT_APP_SERV_HOST } from "../../utils/consts";
 dotenv.config()
 
 const Sales = () => {
@@ -122,7 +122,7 @@ const Sales = () => {
         //Добавить в Redux
         }
 
-const backUrl = process.env.SERVER_HOST || SERVER_HOST
+const backUrl = process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
 
 const [active, setActive] = React.useState(false)
 

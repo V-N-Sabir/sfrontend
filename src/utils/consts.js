@@ -10,6 +10,7 @@ export const CONTACT = 'contact'
 export const ORDERS = 'orders'
 
 export const SERVER_HOST = 'https://frankbackend.onrender.com'  //'http://localhost:8080/'
+export const REACT_APP_SERV_HOST =  'https://frankbackend.onrender.com'
 
 //export const AUTH = 'auth'
 

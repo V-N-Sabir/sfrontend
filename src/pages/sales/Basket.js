@@ -2,14 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addProductBasket, minusItem, removeItems, selectCart } from '../../redux/slices/basketSlice';
-import { CONTACT, SERVER_HOST, } from '../../utils/consts';
+import { CONTACT, REACT_APP_SERV_HOST, } from '../../utils/consts'
 //import * as dotenv from 'dotenv'
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config()
 
 const Basket = () => {
 
-    console.log("process.env.SERVER_HOST", process.env);
+
     //const [carts, useCarts] = React.useState([])
     //const [prise, usePrise] = React.useState(0)
     const navigate = useNavigate()
@@ -53,7 +53,7 @@ const checkout = () => {
 }
 console.log("items", items);
 
-const backUrl = process.env.SERVER_HOST || SERVER_HOST
+const backUrl = process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
     return (
         <div className='center'>
         { items.length ?
