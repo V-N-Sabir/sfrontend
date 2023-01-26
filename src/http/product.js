@@ -69,10 +69,10 @@ const paginationProduct = async(limit, page) => {
     }
 }    
 // Фильтр по страницам
-const pagePaginationProduct = async(limit, page, pageId) => { 
+const pagePaginationProduct = async(limit, page=1, pageId) => { 
     try {
         const response = await $authHost.get(`api/product/page?limit=${limit}&page=${page}&pageId=${pageId}`)
-            
+        
         return response.data
     } catch(e) {
         console.log(e);

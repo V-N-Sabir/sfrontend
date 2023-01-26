@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, } from "react-router-dom";
+import { useLocation, useParams, } from "react-router-dom";
 //import ModalWin from "../../components/modal/ModalWin";
-import { paginationProduct } from "../../http/product";
+import { paginationProduct, pagePaginationProduct } from "../../http/product";
 import { getsetIsAuth } from "../../redux/slices/authSlice";
 import { addProductBasket } from "../../redux/slices/basketSlice";
-import { getCountProduct, InitialProductPage, loadingProduct, productFetchingDestructor, setFeching, setFechingPage, } from "../../redux/slices/productSlice";
+import { getCountProduct, InitialProductPage, productFetchingDestructor, setFeching, setFechingPage, setLoadingPage, setloadingPagination, } from "../../redux/slices/productSlice";
 //import { NODE_SERVER } from "../../utils/consts";
 import AuthModal from "./AuthModal";
 import CollapseApp from "./Collapse";
@@ -30,12 +30,14 @@ const Sales = () => {
     const dispatch = useDispatch()
     // eslint-disable-next-line
     const {pathname} = useLocation()
+    const {id} = useParams()
 
     React.useEffect(() => {
 
         return function() {
             dispatch(InitialProductPage({page:1, totalcount:0}))
             console.log("return  useEffect")
+            // Запрос попробовать перенести сюда, фильт товаров
         }
      // eslint-disable-next-line 
     }, [])
@@ -44,7 +46,7 @@ const Sales = () => {
 
     const [products, setProducts] = React.useState([])   
     const refTotal = React.useRef()
-    const {limit,count, page, feching, product, totalCount, loading} = useSelector(getCountProduct)
+    const {limit,count, page, feching, product, totalCount, loading, countPag,loadingPag,routeLoading} = useSelector(getCountProduct)
 
 
     React.useEffect( () => { 
@@ -79,13 +81,15 @@ const Sales = () => {
      
 
     const producti = async () => {
-        dispatch(loadingProduct(true))
+       // dispatch(setFeching(true))
         const data = await paginationProduct(limit, page)
        // console.log("data= ", data)
         if(data) {
             //console.log("data---", data);
            dispatch(productFetchingDestructor(data))
-           dispatch(setFechingPage(false))
+           dispatch(setFeching(false))
+           dispatch(setLoadingPage(false))
+           //dispatch(setFechingPage(false))
             //dispatch(productFetchingSuccess(data))
             
         }
@@ -102,12 +106,12 @@ const Sales = () => {
 
 
     React.useEffect( () => { 
-        if (feching) {
+        if (loading) {
             producti()
         }
 
     // eslint-disable-next-line
-    }, [feching])
+    }, [loading])
 
 
     //React.useCallback(()=> {'function'},[])
@@ -145,11 +149,35 @@ const Sales = () => {
         //Добавить в Redux
         }
 
+
+
+const loadProduct = async () => {
+    console.log("loadProduct")
+    if (pathname === "/") {
+        console.log("loadProduct_pathname", pathname)
+        dispatch(setFeching(true))      
+    } else {
+        //dispatch(setFechingPaginat(true))
+        dispatch(setFechingPage(true))
+        const data = await pagePaginationProduct(limit, page+1, id)
+        //console.log("data_Pagination", data)
+        if(data) {
+            refTotal.current = refTotal.current + limit
+           dispatch(productFetchingDestructor(data))
+           
+            //dispatch(productFetchingSuccess(data))
+           console.log("refTotal.current", refTotal.current) 
+        }
+        dispatch(setloadingPagination(false))
+    }
+
+}
+
 const backUrl = process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
 
 const [active, setActive] = React.useState(false)
-
-        //++
+  
+//++
         //const isPostsLoading = true
      //   if (pathname === "/") {
       //  useObserver(lastElement,refTotal.current < count,feching, () => {
@@ -168,6 +196,10 @@ const [active, setActive] = React.useState(false)
             </div>
         <CollapseApp />
         
+        
+            {feching || routeLoading ? 
+            <div className="blog-head"><Loader /></div>
+            :
             <div className="blog-head">
             {products && products.length!==0 && products.map((product) => {
             return  <div className="blog-product" key={product.id}>
@@ -183,23 +215,29 @@ const [active, setActive] = React.useState(false)
               onClick={() => addProduct(product)}>В корзину</button>
               </div>
 
-            </div>
-            
-            
-              
+            </div>                                      
         })}
+       
        {/* {feching ? <div  style={{height: 20, background: 'red', display: 'block'}}>
-        Анимация </div> : ''}*/}
-    
+        Анимация </div> : ''} ----|| feching*/}
+
     </div>
-        
-    {loading ? <Loader /> : ''}
+    }
+
+    {loading || loadingPag ? <Loader /> : ''}
     </div>
-    {/* */}
-    {refTotal.current < count && !loading &&   
+
+
+    {pathname === "/" && refTotal.current < count && !loading &&   
     <div className="productload">
-    <p  onClick={() => dispatch(setFeching(true)) }>{'>>>'}</p> 
+    <p  onClick={loadProduct}>{'>>>'}</p> 
     </div>}
+    
+    {pathname !== "/" &&  refTotal.current < countPag && !loading && 
+        <div className="productload">
+        <p  onClick={loadProduct}>{'>>>'}</p> 
+        </div>
+    }
      
 </div> 
 

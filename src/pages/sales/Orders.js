@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDocumentUserId, getRowsId } from '../../http';
 import Loader from '../../Loader/Loader';
 import { getsetIsAuth, getUser } from '../../redux/slices/authSlice';
-import {  getRows, getStatus, rowsClear, rowsPush } from '../../redux/slices/documentSlice';
-import { getCountProduct, loadingProduct } from '../../redux/slices/productSlice';
+import {  documentEdit, getDocuments, getRows, getStatus, rowsClear, rowsPush } from '../../redux/slices/documentSlice';
 import OrdersTable from './OrderTable';
 
 const Orders = () => { 
@@ -15,7 +14,7 @@ const [rows, setDocum] = React.useState([])
     const isAuth = useSelector(getsetIsAuth)
     const rowses = useSelector(getRows)
     const status = useSelector(getStatus)
-    const {loading} = useSelector(getCountProduct)
+    const {edit} = useSelector(getDocuments)
   
     
     React.useEffect(() => {
@@ -25,7 +24,7 @@ const [rows, setDocum] = React.useState([])
 
 
     const getDocumentsId = async (id) => {
-        dispatch(loadingProduct(true))
+        dispatch(documentEdit(true))
         // Очищаем state - заказов, перед запросом
         dispatch(rowsClear())
     if (user) {
@@ -52,7 +51,7 @@ const [rows, setDocum] = React.useState([])
     } else {
         console.log("Не авторизован");
     }
-    dispatch(loadingProduct(false))
+    dispatch(documentEdit(false))
 }
    
     React.useEffect(() => {
@@ -66,7 +65,7 @@ const [rows, setDocum] = React.useState([])
 
     return (
         <>
-        {loading && <Loader/>}
+        {edit && <Loader/>}
         {rows.length !==0 && rows &&  rows.map((row,i) => (
         <div className='document_head' key={i}>
            <div className='header'>
@@ -84,7 +83,7 @@ const [rows, setDocum] = React.useState([])
               <b className='header'>Сумма документа: {row[0].Salestables.totalPrice}</b>
         </div>
         ))}
-        {!loading && rows.length ===0 && <h1>Заказы отсутствуют !</h1>}
+        {!edit && rows.length ===0 && <h1>Заказы отсутствуют !</h1>}
         </>
     )
 

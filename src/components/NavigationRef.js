@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { paginationProduct } from '../http/product'
 import AuthModal from '../pages/sales/AuthModal'
 import { getsetIsAuth } from '../redux/slices/authSlice'
-import { getCountProduct, InitialProductPage, loadingProduct, productFetchingSuccess, setProductPage } from '../redux/slices/productSlice'
+import { getCountProduct, InitialProductPage, productFetchingSuccess, setProductPage, setRouteLoading, } from '../redux/slices/productSlice'
 
 
 import { SHOP_ROUTE, ORDERS, } from '../utils/consts'
@@ -17,7 +17,7 @@ const NavigationRef = () => {
     const dispatch = useDispatch()
    //Товары
    const product = async () => {
-    dispatch(loadingProduct(true))
+    dispatch(setRouteLoading(true))
     dispatch(InitialProductPage({page:1, totalcount:0}))
     const data = await paginationProduct(limit, 1)
     console.log("data-product ---- ", data)
@@ -27,7 +27,8 @@ const NavigationRef = () => {
         dispatch(setProductPage())
    
     }
-    dispatch(loadingProduct(false))
+ //   dispatch(setFeching(false))
+    dispatch(setRouteLoading(false))
    }
 
    const isAuth = useSelector(getsetIsAuth)

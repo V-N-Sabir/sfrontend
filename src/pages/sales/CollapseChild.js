@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { pagePaginationProduct } from '../../http/product';
 import { getPagesFilterId } from '../../redux/slices/pageSlice';
-import { getCountProduct, loadingProduct, productFilterSuccess, } from '../../redux/slices/productSlice';
+import { getCountProduct, productFilterSuccess, setFechingPaginat,} from '../../redux/slices/productSlice';
 import { SHOP_ROUTE } from '../../utils/consts';
 
 
@@ -29,11 +29,15 @@ const CollapseChild = ({id}) => {
 
 const productFilter = async (id) => {
   console.log("page_CollapseChild", page)
-  dispatch(loadingProduct(true))
+  dispatch(setFechingPaginat(true))
 // Запрос на сервер для получения товаров
   const data = await pagePaginationProduct(limit,1,id)
+
+  console.log("data_productFilter", data)   
+
+
   dispatch(productFilterSuccess(data))
-  dispatch(loadingProduct(false))
+  dispatch(setFechingPaginat(false))
   navigate(SHOP_ROUTE + id)
 }
 

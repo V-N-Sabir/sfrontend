@@ -12,7 +12,7 @@ import Loader from './Loader/Loader';
 import { setIsAuth, setUser } from './redux/slices/authSlice';
 import { statusFetchingSuccess } from './redux/slices/documentSlice';
 import { pageFetchingSuccess, pageHeadFetchingSuccess } from './redux/slices/pageSlice';
-import { getCountProduct, loadingProduct, productFetchingSuccess, setProductPage } from './redux/slices/productSlice';
+import { getCountProduct, setFeching, productFetchingSuccess, setProductPage } from './redux/slices/productSlice';
 
 
 //import './scss/app.scss' 
@@ -64,14 +64,14 @@ const {limit, page} = useSelector(getCountProduct)
    //Товары
    const product = async () => {
    
-    dispatch(loadingProduct(true))
+    //dispatch(setFeching(true))
     const data = await paginationProduct(limit, page)
     //console.log("data ---- ", data)
     if(data) {
     dispatch(productFetchingSuccess(data))
     dispatch(setProductPage())
     }
-    dispatch(loadingProduct(false))
+  //  dispatch(setFeching(false))
    }
 
    const pageHead = async () => {

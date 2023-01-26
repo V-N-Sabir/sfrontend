@@ -65,10 +65,10 @@ const cartSlice = createSlice({
             state.documentsContainer.unshift(action.payload)
             state.document = state.documentsContainer
           },*/
-         /* documentEdit(state, action) {
+          documentEdit(state, action) {
             state.edit = action.payload
 
-          },*/
+          },
   
      
     }
@@ -77,10 +77,10 @@ const cartSlice = createSlice({
 
 // ++
 export const getStatus = (state) => state.document.status
-export const getDocuments = (state) => state
+export const getDocuments = (state) => state.document
 export const getRows = (state) => state.document.rows
 
 
-export const {rowsPush, documentFetchingSuccess, statusFetchingSuccess, rowsClear,} = cartSlice.actions
+export const {rowsPush, documentFetchingSuccess, statusFetchingSuccess, rowsClear,documentEdit} = cartSlice.actions
 
 export default cartSlice.reducer
