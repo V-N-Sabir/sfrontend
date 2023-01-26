@@ -159,6 +159,8 @@ const [active, setActive] = React.useState(false)
         //    useObserver(lastElement, page < totalPages, isPostsLoading, () => {setPage(page + 1)})
 
     return (
+        <div>
+          
         <div className="blog">
          
             <div>
@@ -188,10 +190,18 @@ const [active, setActive] = React.useState(false)
         })}
        {/* {feching ? <div  style={{height: 20, background: 'red', display: 'block'}}>
         Анимация </div> : ''}*/}
-        {loading ? <Loader /> : ''}
+    
     </div>
-
+        
+    {loading ? <Loader /> : ''}
     </div>
+    {/* */}
+    {refTotal.current < count && !loading &&   
+    <div className="productload">
+    <p  onClick={() => dispatch(setFeching(true)) }>{'>>>'}</p> 
+    </div>}
+     
+</div> 
 
     )
 }
