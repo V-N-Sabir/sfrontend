@@ -5,23 +5,32 @@ import { useLocation, } from "react-router-dom";
 import { paginationProduct } from "../../http/product";
 import { getsetIsAuth } from "../../redux/slices/authSlice";
 import { addProductBasket } from "../../redux/slices/basketSlice";
-import { getCountProduct, productFetchingDestructor, setFeching, setFechingPage, } from "../../redux/slices/productSlice";
+import { getCountProduct, InitialProductPage, loadingProduct, productFetchingDestructor, setFeching, setFechingPage, } from "../../redux/slices/productSlice";
 //import { NODE_SERVER } from "../../utils/consts";
 import AuthModal from "./AuthModal";
 import CollapseApp from "./Collapse";
 
 
 import './index.scss'
+//import {useInView} from 'react-intersection-observer'
 //import * as dotenv from 'dotenv'
 import dotenv from 'dotenv'
 import { REACT_APP_SERV_HOST } from "../../utils/consts";
+import Loader from "../../Loader/Loader";
+//import { useObserver } from "../../hooks/useObserver";
 dotenv.config()
 
 const Sales = () => {
-    
+//const lastElement = React.useRef()
+/*    const {ref, inView} = useInView({
+        threshold: 0,
+        triggerOnce: true,
+    })*/
+
     const dispatch = useDispatch()
+    // eslint-disable-next-line
     const {pathname} = useLocation()
-/*--------------- DELETE
+
     React.useEffect(() => {
 
         return function() {
@@ -30,19 +39,34 @@ const Sales = () => {
         }
      // eslint-disable-next-line 
     }, [])
-    */
+
     const isAuth = useSelector(getsetIsAuth)
 
     const [products, setProducts] = React.useState([])   
     const refTotal = React.useRef()
-    const {limit,count, page, feching, product, totalCount} = useSelector(getCountProduct)
+    const {limit,count, page, feching, product, totalCount, loading} = useSelector(getCountProduct)
 
 
     React.useEffect( () => { 
-            //  if (feching) {
-        refTotal.current = totalCount
-            // }            
+        //  if (feching) {
+    refTotal.current = totalCount
+        // }            
     }, [totalCount])
+  
+  /*
+    console.log("inView", inView) 
+    //++
+    React.useEffect(() => {
+        if (inView && feching && refTotal.current < count) {
+            dispatch(setFeching(true))
+            console.log("inView", inView) 
+        }
+        console.log("inView", inView)
+     // eslint-disable-next-line 
+    }, [inView])
+    //++
+*/
+
 
 
 
@@ -55,6 +79,7 @@ const Sales = () => {
      
 
     const producti = async () => {
+        dispatch(loadingProduct(true))
         const data = await paginationProduct(limit, page)
        // console.log("data= ", data)
         if(data) {
@@ -105,8 +130,6 @@ const Sales = () => {
 // eslint-disable-next-line    
 ,[])
     
-  
-    
 
 
 
@@ -126,18 +149,25 @@ const backUrl = process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
 
 const [active, setActive] = React.useState(false)
 
-
-
+        //++
+        //const isPostsLoading = true
+     //   if (pathname === "/") {
+      //  useObserver(lastElement,refTotal.current < count,feching, () => {
+      //      dispatch(setFeching(true))
+      //  })
+   // }
+        //    useObserver(lastElement, page < totalPages, isPostsLoading, () => {setPage(page + 1)})
 
     return (
         <div className="blog">
+         
             <div>
                 <AuthModal  active={active} setActive={setActive}/>
             </div>
         <CollapseApp />
         
             <div className="blog-head">
-            {products && products.length!==0 ? products.map((product) => {
+            {products && products.length!==0 && products.map((product) => {
             return  <div className="blog-product" key={product.id}>
             
                 <img src={backUrl + product.img} alt={product.img} className="blog-product"/>           
@@ -150,12 +180,19 @@ const [active, setActive] = React.useState(false)
               <button className='btn-outline btn-circle count-minus item-info' 
               onClick={() => addProduct(product)}>В корзину</button>
               </div>
-            </div>
 
+            </div>
+            
+            
               
-        }): <h1>Товары отсутсвуют!</h1>}
+        })}
+       {/* {feching ? <div  style={{height: 20, background: 'red', display: 'block'}}>
+        Анимация </div> : ''}*/}
+        {loading ? <Loader /> : ''}
     </div>
+
     </div>
+
     )
 }
 

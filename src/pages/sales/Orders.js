@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDocumentUserId, getRowsId } from '../../http';
+import Loader from '../../Loader/Loader';
 import { getsetIsAuth, getUser } from '../../redux/slices/authSlice';
 import {  getRows, getStatus, rowsClear, rowsPush } from '../../redux/slices/documentSlice';
+import { getCountProduct, loadingProduct } from '../../redux/slices/productSlice';
 import OrdersTable from './OrderTable';
 
 const Orders = () => { 
@@ -13,6 +15,7 @@ const [rows, setDocum] = React.useState([])
     const isAuth = useSelector(getsetIsAuth)
     const rowses = useSelector(getRows)
     const status = useSelector(getStatus)
+    const {loading} = useSelector(getCountProduct)
   
     
     React.useEffect(() => {
@@ -22,7 +25,7 @@ const [rows, setDocum] = React.useState([])
 
 
     const getDocumentsId = async (id) => {
-
+        dispatch(loadingProduct(true))
         // Очищаем state - заказов, перед запросом
         dispatch(rowsClear())
     if (user) {
@@ -49,10 +52,13 @@ const [rows, setDocum] = React.useState([])
     } else {
         console.log("Не авторизован");
     }
+    dispatch(loadingProduct(false))
 }
    
     React.useEffect(() => {
+       if (isAuth) {
         getDocumentsId(user.id)
+       }
         //console.log("rowses",rowses);
         // eslint-disable-next-line
       }, [isAuth])
@@ -60,7 +66,8 @@ const [rows, setDocum] = React.useState([])
 
     return (
         <>
-        {rows.length ? rows &&  rows.map((row,i) => (
+        {loading && <Loader/>}
+        {rows.length !==0 && rows &&  rows.map((row,i) => (
         <div className='document_head' key={i}>
            <div className='header'>
                 <p>ID: {row[0].Salestables.id}</p>
@@ -76,7 +83,8 @@ const [rows, setDocum] = React.useState([])
               <OrdersTable key={i} row={row} />
               <b className='header'>Сумма документа: {row[0].Salestables.totalPrice}</b>
         </div>
-        )): <h1 className='center'>Заказы отсутствуют !</h1>}
+        ))}
+        {!loading && rows.length ===0 && <h1>Заказы отсутствуют !</h1>}
         </>
     )
 

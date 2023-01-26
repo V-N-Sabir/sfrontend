@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import { REACT_APP_SERV_HOST} from "../utils/consts"
 dotenv.config()
 
-console.log("process.env", process.env)
+//console.log("process.env", process.env)
 
 const $host = axios.create({
   

@@ -15,12 +15,7 @@ import Orders from "./pages/sales/Orders"
 
  
 export const AuthRoute = [
-   /*
-    {
-        path: LOGIN_ROUTE,
-        Component: Auth
-    },*/
-
+    
     {
         path: BASKET,
         Component: Basket
@@ -29,6 +24,11 @@ export const AuthRoute = [
         path: CONTACT,
         Component: ContactUser
     },
+       /*
+    {
+        path: LOGIN_ROUTE,
+        Component: Auth
+    },*/
    
    //---
    /*
@@ -66,14 +66,7 @@ export const AuthRoute = [
 ]
 
 export const PublicRoute = [
-   /* {
-        path: REGISTRATION_ROUTE,
-        Component: Auth
-    },
-    {
-        path: LOGIN_ROUTE,
-        Component: Auth
-    },*/
+
     {
         path: SHOP_ROUTE,
         Component: Crm
@@ -84,6 +77,14 @@ export const PublicRoute = [
         Component: Orders
     }, 
     
+    /* {
+        path: REGISTRATION_ROUTE,
+        Component: Auth
+    },
+    {
+        path: LOGIN_ROUTE,
+        Component: Auth
+    },*/
    // ---------
    /* {
         path: SALES,
@@ -97,6 +98,7 @@ export const PublicRoute = [
         path: SHOP_ROUTE  + '/:id',
         Component: Sales
     },
+
 
  /*   {
         path: AUTH,

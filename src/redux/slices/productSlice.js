@@ -42,6 +42,7 @@ const cartSlice = createSlice({
             state.feching = action.payload
             state.page = state.page + 1
             state.totalCount = state.totalCount + state.limit
+            state.loading = false
             
           },
           setProductPage(state) {
@@ -59,7 +60,10 @@ const cartSlice = createSlice({
           productFilter(state, action) {
             state.product = state.productContainer
               .filter(prod => prod.name.includes(action.payload))
-          },    
+          }, 
+          loadingProduct(state, action) {
+            state.loading = action.payload
+          },   
           // ++
          /* productFilterId(state, action) {
             state.product = state.productContainer
@@ -95,6 +99,6 @@ const cartSlice = createSlice({
 export const getProduct = (state) => state
 export const getCountProduct = (state) => state.product
 
-export const { productFilter, productFetchingSuccess, productFetchingDestructor, setFeching, setFechingPage, setProductPage, productFilterSuccess, InitialProductPage,} = cartSlice.actions
+export const { productFilter, productFetchingSuccess, productFetchingDestructor, setFeching, setFechingPage, setProductPage, productFilterSuccess, InitialProductPage, loadingProduct,} = cartSlice.actions
 
 export default cartSlice.reducer 

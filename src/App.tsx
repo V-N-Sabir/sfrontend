@@ -8,10 +8,11 @@ import { paginationProduct } from './http/product';
 //import { paginationProduct } from './http/product';
 import { getAllStatus } from './http/status';
 import { check } from './http/userAPI';
+import Loader from './Loader/Loader';
 import { setIsAuth, setUser } from './redux/slices/authSlice';
 import { statusFetchingSuccess } from './redux/slices/documentSlice';
 import { pageFetchingSuccess, pageHeadFetchingSuccess } from './redux/slices/pageSlice';
-import { getCountProduct, productFetchingSuccess, setProductPage } from './redux/slices/productSlice';
+import { getCountProduct, loadingProduct, productFetchingSuccess, setProductPage } from './redux/slices/productSlice';
 
 
 //import './scss/app.scss' 
@@ -34,7 +35,7 @@ const App:React.FC = () =>  {
     //setTimeout(() => { 
       if (localStorage.getItem('token')) {
       check().then(data => {
-        console.log("data", data);
+        //console.log("data_user", data)
         if (data) {
           dispatch(setIsAuth(true))
           // @ts-ignore
@@ -62,12 +63,15 @@ const {limit, page} = useSelector(getCountProduct)
 
    //Товары
    const product = async () => {
+   
+    dispatch(loadingProduct(true))
     const data = await paginationProduct(limit, page)
     //console.log("data ---- ", data)
     if(data) {
     dispatch(productFetchingSuccess(data))
     dispatch(setProductPage())
     }
+    dispatch(loadingProduct(false))
    }
 
    const pageHead = async () => {
@@ -104,7 +108,7 @@ const {limit, page} = useSelector(getCountProduct)
 
 
 if (loading) {
-  return (<><h1>Загрузка</h1></>)
+  return (<><Loader/></>)
 }
 
   return (      

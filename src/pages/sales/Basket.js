@@ -51,9 +51,10 @@ const checkout = () => {
     // clear basket
 
 }
-console.log("items", items);
+console.log("items-basket", items)
 
 const backUrl = process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
+
     return (
         <div className='center'>
         { items.length ?
