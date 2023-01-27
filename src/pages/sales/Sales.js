@@ -5,7 +5,7 @@ import { useLocation, useParams, } from "react-router-dom";
 import { paginationProduct, pagePaginationProduct } from "../../http/product";
 import { getsetIsAuth } from "../../redux/slices/authSlice";
 import { addProductBasket } from "../../redux/slices/basketSlice";
-import { getCountProduct, InitialProductPage, productFetchingDestructor, setFeching, setFechingPage, setLoadingPage, setloadingPagination, } from "../../redux/slices/productSlice";
+import { getCountProduct, productFetchingDestructor, setFeching, setFechingPage, setLoadingPage, setloadingPagination, } from "../../redux/slices/productSlice";
 //import { NODE_SERVER } from "../../utils/consts";
 import AuthModal from "./AuthModal";
 import CollapseApp from "./Collapse";
@@ -35,7 +35,7 @@ const Sales = () => {
     React.useEffect(() => {
 
         return function() {
-            dispatch(InitialProductPage({page:1, totalcount:0}))
+          //  dispatch(InitialProductPage({page:1, totalcount:0}))
             console.log("return  useEffect")
             // Запрос попробовать перенести сюда, фильт товаров
         }
@@ -87,10 +87,9 @@ const Sales = () => {
         if(data) {
             //console.log("data---", data);
            dispatch(productFetchingDestructor(data))
-           dispatch(setFeching(false))
+           //dispatch(setFeching(false))
            dispatch(setLoadingPage(false))
-           //dispatch(setFechingPage(false))
-            //dispatch(productFetchingSuccess(data))
+           //dispatch(productFetchingSuccess(data))
             
         }
        }
@@ -157,7 +156,6 @@ const loadProduct = async () => {
         console.log("loadProduct_pathname", pathname)
         dispatch(setFeching(true))      
     } else {
-        //dispatch(setFechingPaginat(true))
         dispatch(setFechingPage(true))
         const data = await pagePaginationProduct(limit, page+1, id)
         //console.log("data_Pagination", data)
@@ -186,6 +184,8 @@ const [active, setActive] = React.useState(false)
    // }
         //    useObserver(lastElement, page < totalPages, isPostsLoading, () => {setPage(page + 1)})
 
+//console.log("feching",feching,"routeLoading",routeLoading,"loading",loading,"",);
+
     return (
         <div>
           
@@ -196,7 +196,7 @@ const [active, setActive] = React.useState(false)
             </div>
         <CollapseApp />
         
-        
+            {/*|| routeLoading  */}
             {feching || routeLoading ? 
             <div className="blog-head"><Loader /></div>
             :
@@ -223,7 +223,7 @@ const [active, setActive] = React.useState(false)
 
     </div>
     }
-
+    {/*  */}
     {loading || loadingPag ? <Loader /> : ''}
     </div>
 
@@ -233,7 +233,7 @@ const [active, setActive] = React.useState(false)
     <p  onClick={loadProduct}>{'>>>'}</p> 
     </div>}
     
-    {pathname !== "/" &&  refTotal.current < countPag && !loading && 
+    {pathname !== "/" &&  refTotal.current < countPag && !routeLoading && 
         <div className="productload">
         <p  onClick={loadProduct}>{'>>>'}</p> 
         </div>

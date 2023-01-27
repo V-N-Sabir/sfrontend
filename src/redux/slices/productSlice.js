@@ -80,7 +80,7 @@ const cartSlice = createSlice({
             
           },
           setFechingPaginat(state, action) {
-            state.feching = action.payload            
+            state.feching = action.payload  
           },
           setRouteLoading(state, action) {
             state.routeLoading = action.payload            
