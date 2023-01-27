@@ -5,6 +5,7 @@ import { getStatesAuth, setAuthLoading, setIsAuth, setUser } from "../../redux/s
 
 import { login, registration } from "../../http/userAPI"
 import Loader from "../../Loader/Loader";
+import { searchWord } from "../../hooks/searchWord";
 
 //--- import { useNavigate } from "react-router-dom";
 //import { SHOP_ROUTE } from "../../utils/consts";
@@ -27,7 +28,7 @@ const AuthModal = ({active, setActive}) => {
 
     const {loading} = useSelector(getStatesAuth)
 
-
+    const [error, setError] = React.useState('')
 
 
 
@@ -35,14 +36,21 @@ const AuthModal = ({active, setActive}) => {
    
     const click = async (e) => {
         e.preventDefault()
+        //str.length
+        if (password.length < 3) {
+            setError('Пароль должен быть более 3-х символов')
+            return
+        }
         try {
+            setError('')
+
             let data;
             if (isLogin) {
             // АНИМАЦИЯ
             dispatch(setAuthLoading(true))
  
                 data = await login(email, password);
-            dispatch(setAuthLoading(false))
+            
                 //console.log("data-login", data);
                // 
               if (data) {
@@ -52,11 +60,12 @@ const AuthModal = ({active, setActive}) => {
              //  navigate(SHOP_ROUTE)
 
             } else {
-            // АНИМАЦИЯ
-            dispatch(setAuthLoading(true))
+            // АНИМАЦИЯ         
                 // Раскодированный token
+                dispatch(setAuthLoading(true))
                 data = await registration(email, password);
-            dispatch(setAuthLoading(false))
+                console.log("data_registration",data);
+               // finaly dispatch(setAuthLoading(false))
                 if (data) {
                     setActive(false) 
                    }
@@ -65,15 +74,25 @@ const AuthModal = ({active, setActive}) => {
             }           
             
             dispatch(setIsAuth(true))
-            // В Redux данные о ползователе
+            // В Redux данные о пользователе
             // @ts-ignore
             dispatch(setUser(data)) //data
-            // Redirect на главную
-            
- 
-        } catch (e) {
-            //alert("Ошибка",e)//e.response.data.messages
-            console.log("ERROR_data-registration", e)
+            // Redirect на главную       
+                
+            } catch (e) {
+                setError(e.message)
+           // alert("Ошибка",e)//e.response.data.messages
+            console.log("ERROR_e", e, "e.message=", e.message)
+           const search = searchWord(e.message, '404')
+            if (search) {
+                setError('Пользователь с таким email уже существует !')
+            }    
+
+
+        } finally {
+            // ВЫполниться в любом случае
+            //console.log("finally")
+            dispatch(setAuthLoading(false))
         }
 
     }
@@ -84,6 +103,14 @@ const AuthModal = ({active, setActive}) => {
         console.log("e", e);
     }*/
 
+    //console.log( typeof error.indexOf('404')) 
+
+const loginOrRegistration = () => {
+    setIsLogin(prev => !prev)
+    setError('')
+}
+
+
     return (
     <ModalWin active={active} setActive={setActive}>
            
@@ -93,11 +120,12 @@ const AuthModal = ({active, setActive}) => {
                 <input  type="email" placeholder="Введите email..."
                     value={email}
                     onChange={e => setEmail(e.target.value)} /> 
-                
+               
                 <input type="current-password" placeholder="Введите пароль..."
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                 />
+                 {error && <p className="errors">{error}</p>}
 
             {!loading ?       
                 <button className="but_navbar" onClick={(e) => click(e)}>{isLogin ? 'Войти' : 'Регистрация'}</button> 
@@ -113,7 +141,7 @@ const AuthModal = ({active, setActive}) => {
             <p>{isLogin ? 'Нет аккаунта ? ' : 'Есть аккаунт ? '}</p>       
            
 
-            <p className="registerClick" onClick={() => setIsLogin(prev => !prev)}>{isLogin ? 'Зарегистрируйся !': 'Войдите !'}</p>
+            <p className="registerClick" onClick={() => loginOrRegistration() }>{isLogin ? 'Зарегистрируйся !': 'Войдите !'}</p>
     
         </div>
        </ModalWin>
