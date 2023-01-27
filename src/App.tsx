@@ -12,7 +12,7 @@ import Loader from './Loader/Loader';
 import { setIsAuth, setUser } from './redux/slices/authSlice';
 import { statusFetchingSuccess } from './redux/slices/documentSlice';
 import { pageFetchingSuccess, pageHeadFetchingSuccess } from './redux/slices/pageSlice';
-import { getCountProduct, setFeching, productFetchingSuccess, setProductPage } from './redux/slices/productSlice';
+import { getCountProduct, productFetchingSuccess, setProductPage } from './redux/slices/productSlice';
 
 
 //import './scss/app.scss' 
