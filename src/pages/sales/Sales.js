@@ -198,7 +198,7 @@ const [active, setActive] = React.useState(false)
         
             {/*|| routeLoading  */}
             {feching || routeLoading ? 
-            <div className="blog-head"><Loader /></div>
+            <div className="blog-head"><Loader loader={true}/></div>
             :
             <div className="blog-head">
             {products && products.length!==0 && products.map((product) => {
@@ -224,7 +224,7 @@ const [active, setActive] = React.useState(false)
     </div>
     }
     {/*  */}
-    {loading || loadingPag ? <Loader /> : ''}
+    {loading || loadingPag ? <Loader loader={true}/> : ''}
     </div>
 
 

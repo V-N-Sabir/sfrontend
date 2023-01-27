@@ -108,7 +108,7 @@ const {limit, page} = useSelector(getCountProduct)
 
 
 if (loading) {
-  return (<><Loader/></>)
+  return (<><Loader loader={true}/></>)
 }
 
   return (      

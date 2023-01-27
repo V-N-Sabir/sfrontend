@@ -7,9 +7,22 @@
     border-radius: 50%;
     border: 3px dashed rgb(28, 117, 117);
     animation: rotate 1s infinite linear;
-  /*  display: flex;
-    justify-content: center;*/
 }
+
+
+.loaderSmall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    
+    border-radius: 50%;
+    border: 3px dashed rgb(32, 22, 122);
+    animation: rotate 1s infinite linear;
+}
+
+
 .load {
     display: flex;
     justify-content: center;

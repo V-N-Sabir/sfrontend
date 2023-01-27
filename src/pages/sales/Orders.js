@@ -65,7 +65,7 @@ const [rows, setDocum] = React.useState([])
 
     return (
         <>
-        {edit && <Loader/>}
+        {edit && <Loader loader={true}/>}
         {rows.length !==0 && rows &&  rows.map((row,i) => (
         <div className='document_head' key={i}>
            <div className='header'>
