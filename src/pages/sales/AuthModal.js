@@ -82,15 +82,22 @@ const AuthModal = ({active, setActive}) => {
             } catch (e) {
                 setError(e.message)
            // alert("Ошибка",e)//e.response.data.messages
-            console.log("ERROR_e", e, "e.message=", e.message)
-           const search = searchWord(e.message, '404')
-            if (search) {
-                setError('Пользователь с таким email уже существует !')
-            }    
+                //console.log("ERROR_e", e, "e.message=", e.message)
+                let word = searchWord(e.message, '404')  
+                if (word) {
+                    setError(word)
+                } 
+                word = searchWord(e.message, '500')  
+                if (word) {
+                    setError(word)
+                }    
+
+  
+
 
 
         } finally {
-            // ВЫполниться в любом случае
+            // Выполниться в любом случае
             //console.log("finally")
             dispatch(setAuthLoading(false))
         }
