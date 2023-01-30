@@ -54,6 +54,10 @@ const NavigationRef = () => {
             <>
                 <AuthModal  active={active} setActive={setActive}/>
             </>
+
+           {/* <Link  to={'loadtest'} >loadtest</Link>*/} 
+
+           
            {/* {page.map((pag) => (
                 <Link key={pag.id} to={pag.name} >{pag.name}</Link>
             ))}*/} 

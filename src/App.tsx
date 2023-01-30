@@ -8,7 +8,8 @@ import { paginationProduct } from './http/product';
 //import { paginationProduct } from './http/product';
 import { getAllStatus } from './http/status';
 import { check } from './http/userAPI';
-import Loader from './Loader/Loader';
+//import Loader from './Loader/Loader';
+import LoaderTest from './Loader/LoadTest';
 import { setIsAuth, setUser } from './redux/slices/authSlice';
 import { statusFetchingSuccess } from './redux/slices/documentSlice';
 import { pageFetchingSuccess, pageHeadFetchingSuccess } from './redux/slices/pageSlice';
@@ -108,7 +109,9 @@ const {limit, page} = useSelector(getCountProduct)
 
 
 if (loading) {
-  return (<><Loader loader={true}/></>)
+  return (<>
+  {/*<Loader loader={true}/>*/}
+  <LoaderTest /></>)
 }
 
   return (      

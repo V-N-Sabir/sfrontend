@@ -8,6 +8,7 @@ import CollapseApp from "./pages/sales/Collapse"
 import Basket from "./pages/sales/Basket"
 import ContactUser from "./pages/sales/ContactUser"
 import Orders from "./pages/sales/Orders"
+//import LoaderTest from "./Loader/LoadTest"
 
 
 
@@ -76,7 +77,21 @@ export const PublicRoute = [
         path: ORDERS,
         Component: Orders
     }, 
-    
+
+    {
+        path: COLLAPSE,
+        Component: CollapseApp
+    },
+    {
+        path: SHOP_ROUTE  + '/:id',
+        Component: Sales
+    },
+
+    //
+   /*   {
+        path: 'loadtest',
+        Component: LoaderTest
+    },   */ 
     /* {
         path: REGISTRATION_ROUTE,
         Component: Auth
@@ -90,14 +105,6 @@ export const PublicRoute = [
         path: SALES,
         Component: Sales
     },*/
-    {
-        path: COLLAPSE,
-        Component: CollapseApp
-    },
-    {
-        path: SHOP_ROUTE  + '/:id',
-        Component: Sales
-    },
 
 
  /*   {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDocumentUserId, getRowsId } from '../../http';
-import Loader from '../../Loader/Loader';
+//import Loader from '../../Loader/Loader';
+import LoaderTest from '../../Loader/LoadTest';
 import { getsetIsAuth, getUser } from '../../redux/slices/authSlice';
 import {  documentEdit, getDocuments, getRows, getStatus, rowsClear, rowsPush } from '../../redux/slices/documentSlice';
 import OrdersTable from './OrderTable';
@@ -65,7 +66,8 @@ const [rows, setDocum] = React.useState([])
 
     return (
         <>
-        {edit && <Loader loader={true}/>}
+        
+        {edit && <LoaderTest />}
         {rows.length !==0 && rows &&  rows.map((row,i) => (
         <div className='document_head' key={i}>
            <div className='header'>

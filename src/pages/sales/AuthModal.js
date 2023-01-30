@@ -41,11 +41,12 @@ const AuthModal = ({active, setActive}) => {
             setError('Пароль должен быть более 3-х символов')
             return
         }
-        try {
+      //  try {
             setError('')
 
             let data;
             if (isLogin) {
+try {                
             // АНИМАЦИЯ
             dispatch(setAuthLoading(true))
  
@@ -58,51 +59,48 @@ const AuthModal = ({active, setActive}) => {
                }
                
              //  navigate(SHOP_ROUTE)
-
+            } catch(e) {
+                console.log(e)  
+                const word = searchWord(e.message, '500')  
+                if (word) {
+                    setError(word)
+                }      
+            } finally {
+            // Выполниться в любом случае
+            dispatch(setAuthLoading(false))
+}            
             } else {
+            
+                try {
             // АНИМАЦИЯ         
                 // Раскодированный token
                 dispatch(setAuthLoading(true))
-                data = await registration(email, password);
-                console.log("data_registration",data);
-               // finaly dispatch(setAuthLoading(false))
+                data = await registration(email, password)
+                console.log("data_registration",data)
                 if (data) {
                     setActive(false) 
                    }
-                   console.log("data-registration", data);
+                console.log("data-registration", data)
                 //navigate(LOGIN_ROUTE)
-            }           
+          //  }           
             
-            dispatch(setIsAuth(true))
-            // В Redux данные о пользователе
-            // @ts-ignore
-            dispatch(setUser(data)) //data
+                dispatch(setIsAuth(true))
+                dispatch(setUser(data)) 
             // Redirect на главную       
                 
-            } catch (e) {
-                setError(e.message)
-           // alert("Ошибка",e)//e.response.data.messages
-                //console.log("ERROR_e", e, "e.message=", e.message)
-                let word = searchWord(e.message, '404')  
-                if (word) {
-                    setError(word)
-                } 
-                word = searchWord(e.message, '500')  
-                if (word) {
-                    setError(word)
-                }    
-
-  
-
-
-
-        } finally {
-            // Выполниться в любом случае
-            //console.log("finally")
-            dispatch(setAuthLoading(false))
-        }
+                } catch (e) {
+                //e.response.data.messages
+                    const word = searchWord(e.message, '404')  
+                    if (word) {
+                        setError(word)
+                    }
+            } finally {
+                // Выполниться в любом случае
+                dispatch(setAuthLoading(false))
+            }
 
     }
+}
     /*
  const setEmailPaste = (e) => {
         //setEmail(value)

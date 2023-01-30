@@ -16,7 +16,8 @@ import './index.scss'
 //import * as dotenv from 'dotenv'
 import dotenv from 'dotenv'
 import { REACT_APP_SERV_HOST } from "../../utils/consts";
-import Loader from "../../Loader/Loader";
+//import Loader from "../../Loader/Loader";
+import LoaderTest from "../../Loader/LoadTest";
 //import { useObserver } from "../../hooks/useObserver";
 dotenv.config()
 
@@ -198,7 +199,7 @@ const [active, setActive] = React.useState(false)
         
             {/*|| routeLoading  */}
             {feching || routeLoading ? 
-            <div className="blog-head"><Loader loader={true}/></div>
+            <div className="blog-head"><LoaderTest /></div>
             :
             <div className="blog-head">
             {products && products.length!==0 && products.map((product) => {
@@ -224,7 +225,7 @@ const [active, setActive] = React.useState(false)
     </div>
     }
     {/*  */}
-    {loading || loadingPag ? <Loader loader={true}/> : ''}
+    {loading || loadingPag ? <LoaderTest/> : ''}
     </div>
 
 
