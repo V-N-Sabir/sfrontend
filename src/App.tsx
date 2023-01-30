@@ -9,7 +9,7 @@ import { paginationProduct } from './http/product';
 import { getAllStatus } from './http/status';
 import { check } from './http/userAPI';
 //import Loader from './Loader/Loader';
-import LoaderTest from './Loader/LoadTest';
+import LoaderTest from './Loader/LoaderLoading';
 import { setIsAuth, setUser } from './redux/slices/authSlice';
 import { statusFetchingSuccess } from './redux/slices/documentSlice';
 import { pageFetchingSuccess, pageHeadFetchingSuccess } from './redux/slices/pageSlice';

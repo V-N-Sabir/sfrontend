@@ -17,7 +17,7 @@ import './index.scss'
 import dotenv from 'dotenv'
 import { REACT_APP_SERV_HOST } from "../../utils/consts";
 //import Loader from "../../Loader/Loader";
-import LoaderTest from "../../Loader/LoadTest";
+import LoaderTest from "../../Loader/LoaderLoading";
 //import { useObserver } from "../../hooks/useObserver";
 dotenv.config()
 

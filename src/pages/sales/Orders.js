@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDocumentUserId, getRowsId } from '../../http';
 //import Loader from '../../Loader/Loader';
-import LoaderTest from '../../Loader/LoadTest';
+import LoaderTest from '../../Loader/LoaderLoading';
 import { getsetIsAuth, getUser } from '../../redux/slices/authSlice';
 import {  documentEdit, getDocuments, getRows, getStatus, rowsClear, rowsPush } from '../../redux/slices/documentSlice';
 import OrdersTable from './OrderTable';
