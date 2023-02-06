@@ -447,6 +447,12 @@
         color: black;
     }
 
+    .noText {
+        margin-left: 425px;
+        margin-top: -10px;
+        color: rgb(131, 6, 6);
+    }
+
     .sInClear:hover { 
         color: blanchedalmond;
         background-color: black;
@@ -454,6 +460,12 @@
 
     .sInClear:active {
         font-weight: 400;
+    }
+
+    .sInpimg:active {
+        width: 15px;
+        height: 15px;
+        
     }
   /*
     background-color: rgb(184, 177, 160);

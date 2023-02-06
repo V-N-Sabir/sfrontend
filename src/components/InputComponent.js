@@ -13,10 +13,12 @@ const InputComponent = ({type, placeholder, clName}) => {
     const navigate = useNavigate()
 
     const [state, setState] = React.useState('')
+    const [noText, setNoText] = React.useState(false)
 
     const dispatch = useDispatch()
  
     const setStateValue = (e) => {
+        setNoText(false)
         console.log(e)
         setState(e)
     }
@@ -28,6 +30,7 @@ const clearProducts = () => {
 
 const searchProducts = async () => {
     if (!state) {
+        setNoText(true)
         //console.log("Введите текст");
         return
     }
@@ -61,10 +64,13 @@ console.log('pathname', pathname, !pathname === "/");
         value={state}
         onChange={e => setStateValue(e.target.value)} /> 
 
+
         <p className='searchInput sInClear' onClick={() => clearProducts()}>X</p>
         <p className='searchInput sInp' onClick={searchProducts}>
         <img src="https://images-na.ssl-images-amazon.com/images/I/41gYkruZM2L.png" alt="search icon" className='sInpimg' />
         </p>
+
+        {noText && <p className="noText">Введите текст !!!</p>}
     </>
     )
 }
