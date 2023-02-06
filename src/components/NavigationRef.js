@@ -8,12 +8,24 @@ import { getCountProduct, InitialProductPage, productFetchingSuccess, setProduct
 
 
 import { SHOP_ROUTE, ORDERS, } from '../utils/consts'
+import InputComponent from './InputComponent'
 
 
 
 const NavigationRef = () => {
+
+   // const [state, setState] = React.useState()
         //page
     const {limit} = useSelector(getCountProduct) 
+
+  //  const {searchProduct} = useSelector(getProduct) 
+
+
+ /*   React.useEffect( () => { 
+        setState(searchProduct)
+    // eslint-disable-next-line
+    }, [searchProduct])
+*/
     const dispatch = useDispatch()
    //Товары
    const product = async () => {
@@ -42,6 +54,7 @@ const NavigationRef = () => {
    }
 
 
+
     return (
         <div className='center'>
        
@@ -51,6 +64,11 @@ const NavigationRef = () => {
    
            {/*  <Link to={SALES} >Магазин</Link>*/} 
             <Link to={ORDERS} onClick={() =>  isAuthUser()}>Заказы</Link>
+
+
+            <InputComponent type='tekst' placeholder='поиск товаров ...'  clName='inputSearch'/>
+
+
             <>
                 <AuthModal  active={active} setActive={setActive}/>
             </>

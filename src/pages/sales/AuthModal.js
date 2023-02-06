@@ -41,7 +41,7 @@ const AuthModal = ({active, setActive}) => {
             setError('Пароль должен быть более 3-х символов')
             return
         }
-      //  try {
+
             setError('')
 
             let data;
@@ -56,7 +56,10 @@ try {
                // 
               if (data) {
                 setActive(false) 
+                dispatch(setIsAuth(true))
+                dispatch(setUser(data)) 
                }
+
                
              //  navigate(SHOP_ROUTE)
             } catch(e) {

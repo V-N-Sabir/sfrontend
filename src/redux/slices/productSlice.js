@@ -12,6 +12,7 @@ const initialState = {
     loading: false,
     loadingPag: false,
     routeLoading: false,
+    notFound: false,
 }
 
 
@@ -23,6 +24,7 @@ const cartSlice = createSlice({
             state.product = action.payload.rows
             state.productContainer = action.payload.rows
             state.count = action.payload.count
+            state.notFound = false
           },
       productFilterSuccess(state, action) {
             state.product = action.payload.rows
@@ -31,6 +33,7 @@ const cartSlice = createSlice({
            // state.count = action.payload.count
            state.totalCount = state.limit
            state.page = 1
+           state.notFound = false
           },
         //++      
         productFetchingDestructor(state, action) {
@@ -85,7 +88,14 @@ const cartSlice = createSlice({
           setRouteLoading(state, action) {
             state.routeLoading = action.payload            
           },
-   
+          searchProductsName(state, action) {
+            state.product = action.payload
+            state.productContainer = action.payload
+            state.count = action.payload.length
+          },
+          setNotFound(state, action) {
+            state.notFound = action.payload
+          },
           
          /*---- loadingProductPage(state, action) {
             state.feching = action.payload
@@ -103,9 +113,6 @@ const cartSlice = createSlice({
         /*  productFromContainer (state, action) {
             state.product = action.payload
             state.productContainer = action.payload
-          }, */ 
-         /* productSearch (state, action) {
-            state.product = action.payload
           }, */ 
           
          /*
@@ -126,6 +133,6 @@ const cartSlice = createSlice({
 export const getProduct = (state) => state
 export const getCountProduct = (state) => state.product
 
-export const { productFilter, productFetchingSuccess, productFetchingDestructor, setFeching, setFechingPage, setProductPage, productFilterSuccess, InitialProductPage, setFechingPaginat,setloadingPagination,setLoadingPage,setRouteLoading} = cartSlice.actions
+export const { productFilter, productFetchingSuccess, productFetchingDestructor, setFeching, setFechingPage, setProductPage, productFilterSuccess, InitialProductPage, setFechingPaginat,setloadingPagination,setLoadingPage,setRouteLoading, searchProductsName,setNotFound} = cartSlice.actions
 
 export default cartSlice.reducer 

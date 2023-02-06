@@ -27,6 +27,8 @@ const Sales = () => {
         threshold: 0,
         triggerOnce: true,
     })*/
+    const {notFound} = useSelector(getCountProduct)
+
 
     const dispatch = useDispatch()
     // eslint-disable-next-line
@@ -189,6 +191,7 @@ const [active, setActive] = React.useState(false)
 
     return (
         <div>
+  
           
         <div className="blog">
          
@@ -221,7 +224,7 @@ const [active, setActive] = React.useState(false)
        
        {/* {feching ? <div  style={{height: 20, background: 'red', display: 'block'}}>
         Анимация </div> : ''} ----|| feching*/}
-
+        {notFound && <h1>Товары не найдены</h1>}   
     </div>
     }
     {/*  */}
@@ -239,7 +242,8 @@ const [active, setActive] = React.useState(false)
         <p  onClick={loadProduct}>{'>>>'}</p> 
         </div>
     }
-     
+
+
 </div> 
 
     )

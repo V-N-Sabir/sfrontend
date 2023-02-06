@@ -312,6 +312,7 @@
     cursor: pointer;
     padding: 5px 10px;
     display: flex;
+    color: #309cff;
    /* margin-top: 10px;*/
   }
 
@@ -406,6 +407,54 @@
     top: 25px;
     left: 10px;
 
+    .inputSearch {
+
+        border: 2px solid #b8b1a0;
+        border-radius: 50px;
+        margin-left: 150px;
+        width: 250px;
+        height: 30px;
+        font-weight: 700;
+        color: #1890ff;
+        text-align: center;
+    }
+
+    .searchInput {
+        color: #6d1d9f;
+        margin-left: 610px;
+        margin-top: -26px;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    .sInp {
+        margin-left: 575px;
+        margin-top: -37px;
+
+    }
+    .sInpimg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .sInClear {
+        border: 1px solid palevioletred;
+        padding: 0 2px;
+        border-radius: 15px;
+        width: 25px;
+        text-align: center;
+        background-color: blanchedalmond;
+        color: black;
+    }
+
+    .sInClear:hover { 
+        color: blanchedalmond;
+        background-color: black;
+    }
+
+    .sInClear:active {
+        font-weight: 400;
+    }
   /*
     background-color: rgb(184, 177, 160);
     border: 1px solid darkgray;

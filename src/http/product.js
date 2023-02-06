@@ -25,24 +25,7 @@ const updateProduct = async(name, artikul, id) => {
     }
 }
 */
-/*
-const getSearchProducts = async(name) => {
-    try {
-    const product = await Promise.all([axios.post(`api/product/search?name=${name}`)])
-    
-    const response = await Promise.all([$authHost.get(`api/product/search?name=${name}`)])
 
-    //const {data} = product[0]
-    
-      return product
-  
-    } catch(e) {
-      console.log(e);
-      return []
-  }
-  
-}
-*/
 
 /*
 const getOneProduct = async(id) => { 
@@ -79,13 +62,32 @@ const pagePaginationProduct = async(limit, page=1, pageId) => {
     }
 } 
 
+
+
+const getSearchProducts = async(name) => {
+    try {
+  //  const product = await Promise.all([axios.post(`api/product/search?name=${name}`)])
+    
+    const product = await Promise.all([$authHost.post(`api/product/search?name=${name}`)])
+
+    //const {data} = product[0]
+    
+      return product
+  
+    } catch(e) {
+      console.log(e)
+      return []
+  }
+  
+}
+
 export {
     paginationProduct,
     pagePaginationProduct,
+    getSearchProducts,
 // getOneProduct,
 //  createProduct,
-//  updateProduct,
-//  getSearchProducts,
+//  updateProduct,  
 
 
 }
