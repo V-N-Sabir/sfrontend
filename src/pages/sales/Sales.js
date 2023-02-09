@@ -206,7 +206,7 @@ const [active, setActive] = React.useState(false)
             :
             <div className="blog-head">
             {products && products.length!==0 && products.map((product) => {
-            return  <div className="blog-product" key={product.id}>
+            return  <div className="blog-product blog-productHov" key={product.id}>
             
                 <img src={backUrl + product.img} alt={product.img} className="blog-product"/>           
              

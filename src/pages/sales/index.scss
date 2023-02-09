@@ -279,11 +279,16 @@
         /*тег р по центру  */
         display: inline-table;
         border: none;
+        border-radius: 10px;
        /* display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center; */
 
+    }
+    &-productHov:hover {
+        /*box-sizing: border-box;*/
+        box-shadow: -2px -2px 3px 3px rgb(82 157 135);
     }
 
 }
