@@ -44,6 +44,7 @@
 
     .btn-outline:active {
         margin-top: 2px;
+
        /* height: 30px;*/
     }
 }
@@ -226,8 +227,11 @@
        /* margin-top: 1px;*/
         background-color: purple;
         color:white;
-        font-size: 13px;
-        //box-shadow: 2px 2px 2px 2px rgb(50, 5, 24);
+        /*font-size: 13px;*/
+    }
+
+    .btn-outline:hover { 
+        box-shadow: -2px 3px 1px 0px rgb(160 181 187);
     }
 }
 
