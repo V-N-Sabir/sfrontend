@@ -4,7 +4,8 @@ import { useNavigate, } from "react-router-dom" //NavLink
 import {useDispatch, useSelector} from 'react-redux'
 import { getsetIsAuth, setIsAuth, setUser } from "../redux/slices/authSlice";
 import AuthModal from "../pages/sales/AuthModal"
-import NavigationRef from "./NavigationRef"
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
+//import NavigationRef from "./NavigationRef"
 
 
 
@@ -34,9 +35,8 @@ const NavBar = () => {
 
 return (
     <div>
-        <NavigationRef />
-        {/*<h1>Меню авторизации</h1>*/}
-        
+        {/*----<NavigationRef />*/}
+        <BurgerMenu />
         <div>
             <AuthModal  active={active} setActive={setActive}/>
         </div>

@@ -8,7 +8,7 @@ nav {
     display: flex;
     align-items: center;
     /*++++*/
-    top: 75px;
+    top: 5px;
 }
 
 .burger-btn {
@@ -51,7 +51,7 @@ nav {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    top: 125px;
+    top: 0px;
     left: 0;
     /*скрыть меню*/
     transform: translate(-130%);
@@ -86,7 +86,7 @@ nav {
 .menu__header {
     padding: 10px;
     font-size: 2em;
-    color: #349eff;
+    color: wheat;
     border-bottom: 1px solid wheat;
     width: 100%;
     text-align: center;
@@ -96,6 +96,7 @@ nav {
     color: wheat;
     text-decoration: none;
 }*/
+
 
 
 @media screen and (max-width:768px) {

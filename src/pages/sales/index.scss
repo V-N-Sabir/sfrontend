@@ -54,7 +54,9 @@
 .ant-collapse-content-box {
     display: grid;
 
+
 }
+
 
 
 .basket {
@@ -244,11 +246,13 @@
     position: fixed;
     top: 200px;
     left: 10px;
+
     
    /* position: relative;
     top: -135px;*/
     
 }
+
 
 .blog {
     display: flex;
@@ -271,6 +275,7 @@
         width: 900px; 
         box-shadow: 2px 2px 4px 4px rgb(179, 179, 218);
         padding-bottom: 15px;
+        margin-top: 70px;
         
     }
 
@@ -410,22 +415,10 @@
 }
 
 
-.refNavigate {
-    margin-bottom: 20px;
-    position: fixed;
-    top: 25px;
-    left: 10px;
 
-   
-   
   
-  /*
-    background-color: rgb(184, 177, 160);
-    border: 1px solid darkgray;
-    border-radius: 25px;
-*/
-  }
-  
+
+
   .inputSearch {
 
     /* border: 2px solid #b8b1a0;*/
@@ -507,9 +500,16 @@
 
 //INPUT SEARCH END
 
+.refNavigate {
+    //margin-bottom: 20px;
+    position: fixed;
+    top: 120px;
+    left: 10px;
 
+    //display: inline-grid;
+  }
 
-  .refNavigate > a {
+  .refNavigate ul li > a {
     margin-left: 15px;
     text-decoration: none;
     font-size: 18px;
@@ -520,15 +520,22 @@
     border-radius: 25px;
     font-weight: 600;
     padding: 5px 10px;
+    background-color: #ffd17b;
+
   }
+
+
   
-  .refNavigate a:focus {
+  .refNavigate ul li a:focus {
     /*text-decoration: revert;*/
     height: 30px;
    // color:  ghostwhite;
     background-color: antiquewhite;// #69e4e7b5;
     box-shadow: inset 2px 2px 3px rgb(189 155 255 / 72%), -3px -2px 3px 0px rgb(255 149 149);
   }
+  .refNavigate ul > li {
+    margin-bottom: 15px;
+}
 
 
   .center{

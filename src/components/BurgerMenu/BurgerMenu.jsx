@@ -2,12 +2,19 @@
 import React from "react"
 import  Menu  from "./Menu"
 import "./index.css"
+import { useSelector } from "react-redux"
+import { getCountProduct } from "../../redux/slices/productSlice"
 
 const BurgerMenu = () => {
 
     const [menuActive, setMenuActive] = React.useState(false)
 
-    //const items = [{value: "Главная"}, {value: "О нас"}, {value: "Прочее"},{value: "Услуги"},]
+    const {routeLoading} = useSelector(getCountProduct)
+
+    React.useEffect(() => { 
+        setMenuActive(routeLoading)
+    }, [routeLoading])
+
 
     return (
         <>

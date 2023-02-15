@@ -1,7 +1,7 @@
 import React from "react"
 import InputComponent from "../InputComponent"
 import CollapseApp from "../../pages/sales/Collapse"
-//import NavigationRef from "../NavigationRef"
+import NavigationRef from "../NavigationRef"
 
 const Menu = ({active,setActive, header}) => {
     return (
@@ -11,11 +11,14 @@ const Menu = ({active,setActive, header}) => {
             <div className="menu__content" onClick={e => e.stopPropagation()}>
 
                 <div className="menu__header">{header}</div>
-        {/** <ul>{items.map(item => {return <li>{item.value}</li>})}</ul> */}
                 <InputComponent type='tekst' placeholder='поиск товаров ...'  clName='inputSearch'/>
 
+                <div className="colps">
+               <NavigationRef/>
+               </div>
+               
                 <CollapseApp />
-                {/*<NavigationRef/>*/}
+               
                 </div>
 
                 
