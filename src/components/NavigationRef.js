@@ -8,7 +8,7 @@ import { getCountProduct, InitialProductPage, productFetchingSuccess, setProduct
 
 
 import { SHOP_ROUTE, ORDERS, } from '../utils/consts'
-import InputComponent from './InputComponent'
+//import InputComponent from './InputComponent'
 
 
 
@@ -58,15 +58,15 @@ const NavigationRef = () => {
     return (
         <div className='center'>
        
-
+     
         <div className="refNavigate">
+       
             <Link onClick={() =>  product()} to={SHOP_ROUTE} >Главная</Link>
    
            {/*  <Link to={SALES} >Магазин</Link>*/} 
             <Link to={ORDERS} onClick={() =>  isAuthUser()}>Заказы</Link>
-
-
-            <InputComponent type='tekst' placeholder='поиск товаров ...'  clName='inputSearch'/>
+            
+          {/**<InputComponent type='tekst' placeholder='поиск товаров ...'  clName='inputSearch'/> */}  
 
 
             <>

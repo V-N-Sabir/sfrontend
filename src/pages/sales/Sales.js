@@ -8,7 +8,7 @@ import { addProductBasket } from "../../redux/slices/basketSlice";
 import { getCountProduct, productFetchingDestructor, setFeching, setFechingPage, setLoadingPage, setloadingPagination, } from "../../redux/slices/productSlice";
 //import { NODE_SERVER } from "../../utils/consts";
 import AuthModal from "./AuthModal";
-import CollapseApp from "./Collapse";
+//-- import CollapseApp from "./Collapse";
 
 
 import './index.scss'
@@ -18,6 +18,7 @@ import dotenv from 'dotenv'
 import { REACT_APP_SERV_HOST } from "../../utils/consts";
 //import Loader from "../../Loader/Loader";
 import LoaderTest from "../../Loader/LoaderLoading";
+import BurgerMenu from "../../components/BurgerMenu/BurgerMenu";
 //import { useObserver } from "../../hooks/useObserver";
 dotenv.config()
 
@@ -192,13 +193,16 @@ const [active, setActive] = React.useState(false)
     return (
         <div>
   
-          
+            <BurgerMenu /> 
+        
         <div className="blog">
          
             <div>
                 <AuthModal  active={active} setActive={setActive}/>
             </div>
-        <CollapseApp />
+   
+        {/*---<CollapseApp />---*/}
+
         
             {/*|| routeLoading  */}
             {feching || routeLoading ? 

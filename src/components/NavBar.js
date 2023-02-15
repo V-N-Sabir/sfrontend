@@ -3,7 +3,7 @@ import { useNavigate, } from "react-router-dom" //NavLink
 //import {  SHOP_ROUTE } from "../utils/consts";
 import {useDispatch, useSelector} from 'react-redux'
 import { getsetIsAuth, setIsAuth, setUser } from "../redux/slices/authSlice";
-import AuthModal from "../pages/sales/AuthModal";
+import AuthModal from "../pages/sales/AuthModal"
 import NavigationRef from "./NavigationRef"
 
 
@@ -36,7 +36,7 @@ return (
     <div>
         <NavigationRef />
         {/*<h1>Меню авторизации</h1>*/}
-
+        
         <div>
             <AuthModal  active={active} setActive={setActive}/>
         </div>
