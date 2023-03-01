@@ -15,11 +15,11 @@ import './index.scss'
 //import {useInView} from 'react-intersection-observer'
 //import * as dotenv from 'dotenv'
 import dotenv from 'dotenv'
-import { REACT_APP_SERV_HOST } from "../../utils/consts";
+import { IMAGE_APP_SERVER } from "../../utils/consts"
 //import Loader from "../../Loader/Loader";
-import LoaderTest from "../../Loader/LoaderLoading";
-import BurgerMenu from "../../components/BurgerMenu/BurgerMenu";
-//import { useObserver } from "../../hooks/useObserver";
+import LoaderTest from "../../Loader/LoaderLoading"
+import BurgerMenu from "../../components/BurgerMenu/BurgerMenu"
+//import { useObserver } from "../../hooks/useObserver"
 dotenv.config()
 
 const Sales = () => {
@@ -175,7 +175,7 @@ const loadProduct = async () => {
 
 }
 
-const backUrl = process.env.REACT_APP_SERV_HOST || REACT_APP_SERV_HOST
+const backUrl = process.env.IMAGE_APP_SERVER || IMAGE_APP_SERVER
 
 const [active, setActive] = React.useState(false)
   
