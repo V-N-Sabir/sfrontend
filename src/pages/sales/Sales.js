@@ -203,12 +203,12 @@ const [active, setActive] = React.useState(false)
    
         {/*---<CollapseApp />---*/}
 
-        
+            {products.length===0 && <LoaderTest />}
             {/*|| routeLoading  */}
             {feching || routeLoading ? 
-            <div className="blog-head"><LoaderTest /></div>
+            <div className={products.length!==0 ? "blog-head": ""}><LoaderTest /></div>
             :
-            <div className="blog-head">
+            <div className={products.length!==0 ? "blog-head": ""}>
             {products && products.length!==0 && products.map((product) => {
             return  <div className="blog-product blog-productHov" key={product.id}>
             
