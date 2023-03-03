@@ -21,10 +21,7 @@ export const AuthRoute = [
         path: BASKET,
         Component: Basket
     },
-    {
-        path: CONTACT,
-        Component: ContactUser
-    },
+
        /*
     {
         path: LOGIN_ROUTE,
@@ -85,6 +82,10 @@ export const PublicRoute = [
     {
         path: SHOP_ROUTE  + '/:id',
         Component: Sales
+    },
+    {
+        path: CONTACT,
+        Component: ContactUser
     },
 
     //

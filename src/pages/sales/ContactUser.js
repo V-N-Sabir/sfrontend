@@ -13,6 +13,10 @@ import { useTelegram } from '../../hooks/useTelegram';
 
 const ContactUser = () => {
 
+    // ++++++
+    // Сделать проверку если не автроризован предложить авторизоваться
+
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(getUser)
