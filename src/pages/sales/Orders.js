@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import { getDocumentUserId, getRowsId } from '../../http';
 //import Loader from '../../Loader/Loader';
 import LoaderTest from '../../Loader/LoaderLoading';
@@ -64,9 +64,12 @@ const [rows, setDocum] = React.useState([])
       }, [isAuth])
 
 
+
     return (
         <>
         
+
+
         {edit && <LoaderTest />}
         {rows.length !==0 && rows &&  rows.map((row,i) => (
         <div className='document_head' key={i}>

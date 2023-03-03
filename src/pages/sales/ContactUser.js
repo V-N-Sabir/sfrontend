@@ -6,6 +6,7 @@ import {getStatus} from '../../redux/slices/documentSlice'
 import { CreateDocument, CreateRows } from '../../http'
 import { useNavigate } from 'react-router-dom';
 import { ORDERS } from '../../utils/consts';
+import { useTelegram } from '../../hooks/useTelegram';
 
 
 
@@ -47,6 +48,27 @@ const ContactUser = () => {
         navigate('/' + ORDERS)
         
     }
+
+
+    const {tg} = useTelegram()
+
+    React.useEffect(() => {
+      tg.MainButton.setParams({
+          text: 'Отправить данные'
+      })
+      // eslint-disable-next-line
+  }, [])
+
+
+  React.useEffect(() => {
+    if(!number || !comment) {
+        tg.MainButton.hide();
+    } else {
+        // Показать кнопку
+        tg.MainButton.show();
+    }
+    // eslint-disable-next-line
+}, [number, comment])
 
 return (
     <div >
