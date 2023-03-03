@@ -19,13 +19,16 @@ import { IMAGE_APP_SERVER } from "../../utils/consts"
 //import Loader from "../../Loader/Loader";
 import LoaderTest from "../../Loader/LoaderLoading"
 import BurgerMenu from "../../components/BurgerMenu/BurgerMenu"
+import { useTelegram } from "../../hooks/useTelegram";
 //import { useObserver } from "../../hooks/useObserver"
 dotenv.config()
 
-const tg = window.Telegram.WebApp
+//const tg = window.Telegram.WebApp
 
 
 const Sales = () => {
+
+    const {tg, user, onClose, onToggleButton} = useTelegram()
 //const lastElement = React.useRef()
 /*    const {ref, inView} = useInView({
         threshold: 0,
@@ -34,12 +37,10 @@ const Sales = () => {
 
     React.useEffect(() => {
         // Сообщает что приложение проинициализировалось.
-        tg.ready();
+        tg.ready()
+    // eslint-disable-next-line    
     }, [])
 
-    const onClose = () => {
-        tg.close()
-    }
 
     const {notFound} = useSelector(getCountProduct)
 
@@ -208,9 +209,11 @@ const [active, setActive] = React.useState(false)
             <div className="header">
             <button onClick={onClose}>Закрыть</button>
             <span className="username">
-                {tg.initDataUnsafe?.user?.username}
+                {user?.username}
             </span>
             </div>
+
+            <button onClick={onToggleButton} >toggle</button>
             
             <BurgerMenu /> 
         
