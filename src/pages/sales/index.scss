@@ -590,3 +590,8 @@
     text-shadow: -1px 1px 4px #bb4d4d;
 
 }
+
+body {
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+}

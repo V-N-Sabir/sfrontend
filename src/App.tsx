@@ -21,9 +21,6 @@ import { getCountProduct, productFetchingSuccess, setProductPage } from './redux
 
 
 
-
-
-
 const App:React.FC = () =>  {
 
 

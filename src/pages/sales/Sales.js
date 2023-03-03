@@ -22,12 +22,25 @@ import BurgerMenu from "../../components/BurgerMenu/BurgerMenu"
 //import { useObserver } from "../../hooks/useObserver"
 dotenv.config()
 
+const tg = window.Telegram.WebApp
+
+
 const Sales = () => {
 //const lastElement = React.useRef()
 /*    const {ref, inView} = useInView({
         threshold: 0,
         triggerOnce: true,
     })*/
+
+    React.useEffect(() => {
+        // Сообщает что приложение проинициализировалось.
+        tg.ready();
+    }, [])
+
+    const onClose = () => {
+        tg.close()
+    }
+
     const {notFound} = useSelector(getCountProduct)
 
 
@@ -192,7 +205,13 @@ const [active, setActive] = React.useState(false)
 
     return (
         <div>
-  
+            <div className="header">
+            <button onClick={onClose}>Закрыть</button>
+            <span className="username">
+                {tg.initDataUnsafe?.user?.username}
+            </span>
+            </div>
+            
             <BurgerMenu /> 
         
         <div className="blog">
