@@ -28,16 +28,21 @@ dotenv.config()
 
 const Sales = () => {
 
-    const {tg, user, onClose, onToggleButton} = useTelegram()
+    const {tg, user, onClose,} = useTelegram()
 //const lastElement = React.useRef()
 /*    const {ref, inView} = useInView({
         threshold: 0,
         triggerOnce: true,
     })*/
 
+    const [ready, SetReady] = React.useState(false)
+
     React.useEffect(() => {
         // Сообщает что приложение проинициализировалось.
-        tg.ready()
+        
+        if (tg.ready()) {
+            SetReady(true)
+        }
     // eslint-disable-next-line    
     }, [])
 
@@ -205,15 +210,18 @@ const [active, setActive] = React.useState(false)
 //console.log("feching",feching,"routeLoading",routeLoading,"loading",loading,"",);
 
     return (
-        <div>
+       
+       
+            <div>
+             {ready &&    
             <div className="header">
-            <button onClick={onClose}>Закрыть</button>
-            <span className="username">
-                {user?.username}
-            </span>
+                <button className="headeronClose" onClick={onClose}>Закрыть</button>
+                <span className="username">
+                    {user?.username}
+                </span>
             </div>
-
-            <button onClick={onToggleButton} >toggleresTest btn</button>
+                }  
+            {/** <button onClick={onToggleButton} >toggleresTest btn</button>*/}
             
             <BurgerMenu /> 
         

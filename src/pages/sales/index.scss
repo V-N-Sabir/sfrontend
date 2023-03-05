@@ -590,8 +590,36 @@
     text-shadow: -1px 1px 4px #bb4d4d;
 
 }
-
+/*TELEGRAM*/
 body {
     background: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
 }
+
+.headeronClose {
+    position: fixed;
+    top: 13px;
+    left: 50px;
+
+    cursor: pointer;
+    padding: 5px 10px;
+    display: flex;
+    color: #309cff;
+
+    height: 35px;
+    margin: auto;
+    border: 1px solid ghostwhite;
+    border-radius: 25px;
+
+    box-shadow: inset 2px 2px 3px rgb(154 147 140 / 50%), 1px 1px 5px rgb(255 255 255);
+}
+
+
+.headeronClose:active {
+    //margin-top: 1px;
+    //opacity: 0.5;
+    height: 30px;
+    color:  ghostwhite;
+    background-color: #69e4e7b5;
+  }
+/*END TELEGRAM*/
