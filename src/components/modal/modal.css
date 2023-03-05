@@ -13,6 +13,7 @@
     /* Если открыто окно не сможет выделить текст, нажать на кнопку и т.д.*/
     pointer-events: none;
     transition: 0.5s;
+    
 }
 
 .modal.active {
@@ -31,6 +32,13 @@
     width: auto; /* 50vw Половина экрана*/
     transform: scale(0.5);
     transition: 0.4s all;
+    padding: 0 170px;
+    text-align-last: center;
+}
+
+.modal__content  form { 
+   /* background-color: black;*/
+    margin-right: 75px;
 }
 
 .modal__content.active { 
