@@ -35,14 +35,12 @@ const Sales = () => {
         triggerOnce: true,
     })*/
 
-    const [ready, SetReady] = React.useState(false)
+
 
     React.useEffect(() => {
         // Сообщает что приложение проинициализировалось.
         
-        if (tg.ready()) {
-            SetReady(true)
-        }
+        tg.ready()
     // eslint-disable-next-line    
     }, [])
 
@@ -213,14 +211,14 @@ const [active, setActive] = React.useState(false)
        
        
             <div>
-             {ready &&    
-            <div className="header">
-                <button className="headeronClose" onClick={onClose}>Закрыть</button>
-                <span className="username">
-                    {user?.username}
-                </span>
-            </div>
-                }  
+   
+                <div className="header">
+                    <button className="headeronClose" onClick={onClose}>Закрыть</button>
+                    <span className="username">
+                        {user?.username}
+                    </span>
+                </div>
+
             {/** <button onClick={onToggleButton} >toggleresTest btn</button>*/}
             
             <BurgerMenu /> 
